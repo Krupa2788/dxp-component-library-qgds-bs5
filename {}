@@ -1,0 +1,20 @@
+[1] [eval]:1
+[1] setTimeout(()=,15000)
+[1]             ^
+[1] 
+[1] SyntaxError: Unexpected token ')'
+[1]     at makeContextifyScript (node:internal/vm:185:14)
+[1]     at node:internal/process/execution:107:22
+[1]     at [eval]-wrapper:6:24
+[1]     at runScript (node:internal/process/execution:101:62)
+[1]     at evalScript (node:internal/process/execution:133:3)
+[1]     at node:internal/main/eval_string:51:3
+[1] 
+[1] Node.js v20.19.4
+[1] node -e setTimeout(()=,15000) && node server exited with code 1
+--> Sending SIGTERM to other processes..
+[0] 
+[0] > dxp-component-library@0.0.1 cmp
+[0] > dxp-next cmp dev-ui ./dxp/component-service
+[0] 
+[0] npm run cmp exited with code 1

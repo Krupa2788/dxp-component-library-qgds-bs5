@@ -1,0 +1,105 @@
+@use '@styles/common/mixins';
+@use '@styles/common/variables';
+
+.cards {
+  display: grid;
+  gap: var(--spacing-md);
+  padding: 0;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media screen and (max-width: variables.$breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: variables.$breakpoint-sm) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &__header {
+    display: flex;
+    gap: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+
+    @media screen and (max-width: variables.$breakpoint-md) {
+      flex-direction: column;
+    }
+  }
+
+  &__link {
+    margin-left: auto;
+
+    @media screen and (max-width: variables.$breakpoint-md) {
+      margin-left: 0;
+    }
+  }
+
+  &__card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    position: relative;
+    aspect-ratio: 0.55 / 1;
+    background-color: var(--color-bg-alt);
+
+    &--has-image {
+      color: var(--color-bg);
+      background-color: transparent;
+    }
+
+    &:hover {
+      .cards__image {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__heading {
+    color: inherit;
+    @include mixins.clip-text(2);
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1);
+    transition: all 0.5s ease;
+    z-index: var(--z-index-below);
+
+    &::before {
+      content: '';
+      width: inherit;
+      height: inherit;
+      position: absolute;
+      top: inherit;
+      left: inherit;
+      background-color: var(--black);
+      opacity: 0.3;
+    }
+  }
+
+  &__content-type {
+    text-transform: uppercase;
+    @include mixins.clip-text(2);
+  }
+
+  &__card-link {
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    height: 100%;
+    width: 100%;
+    position: relative;
+    text-decoration: none;
+  }
+
+  &__supporting-text {
+    @include mixins.clip-text(6);
+  }
+}

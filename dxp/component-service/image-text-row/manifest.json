@@ -1,0 +1,143 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json",
+  "name": "image-text-row",
+  "namespace": "edge-dxp-comp-lib",
+  "description": "Displays a single row layout with an image on either the left or right side.",
+  "displayName": "Image Text Row",
+  "version": "2.1.0",
+  "type": "edge",
+  "mainFunction": "main",
+  "icon": {
+    "id": "view_column",
+    "color": {
+      "type": "enum",
+      "value": "gray"
+    }
+  },
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "title": "Image Text Row Content",
+        "required": ["componentContent", "componentConfiguration"],
+        "properties": {
+          "componentContent": {
+            "type": "object",
+            "title": "Content",
+            "properties": {
+              "title": {
+                "type": "string",
+                "title": "Section Title",
+                "description": "The title displayed above the section.",
+                "default": "Section Title",
+                "translatable": true,
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "image": {
+                "type": "SquizImage",
+                "title": "Image",
+                "description": "The image displayed in the section.",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "contentType": {
+                "type": "string",
+                "title": "Content Type",
+                "description": "The content type label displayed above the heading.",
+                "default": "Content Type",
+                "translatable": true,
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "heading": {
+                "type": "string",
+                "title": "Heading",
+                "description": "The main heading text.",
+                "default": "Heading",
+                "translatable": true,
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "textContent": {
+                "type": "FormattedText",
+                "title": "Text Content",
+                "description": "The main text content displayed in the section.",
+                "translatable": true,
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              },
+              "link": {
+                "type": "SquizLink",
+                "title": "Link",
+                "description": "The link displayed below the text content.",
+                "ui:metadata": {
+                  "inlineEditable": true
+                }
+              }
+            },
+            "required": ["heading", "textContent"]
+          },
+          "componentConfiguration": {
+            "type": "object",
+            "title": "Configuration",
+            "properties": {
+              "variant": {
+                "type": "string",
+                "title": "Variant",
+                "description": "Select the layout variant: text on the left or right side.",
+                "enum": ["text-right", "text-left"],
+                "default": "text-left",
+                "ui:metadata": {
+                  "quickOption": true
+                }
+              }
+            },
+            "required": ["variant"]
+          }
+        }
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "staticFiles": {
+    "locationRoot": "./"
+  },
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "./example-data/example.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    },
+    "switched": {
+      "functionData": {
+        "main": {
+          "inputData": {
+            "type": "file",
+            "path": "./example-data/example-switched.data.json"
+          },
+          "wrapper": {
+            "path": "preview.html"
+          }
+        }
+      }
+    }
+  }
+}
